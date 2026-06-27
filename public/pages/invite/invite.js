@@ -25,26 +25,49 @@ function formatDate(iso) {
 }
 
 /* ── Render full invite page ── */
-function renderInvitePage(user) {
-  const stats   = getTeamStats(user.userId);
+function renderInvitePage(user, backendData) {
   const refLink = getReferralLink(user.username);
-  const invitedByUserId = getInvitedBy(user.userId);
 
-  /* Who invited me? */
+  /* Backend data ho to use karo, warna localStorage fallback */
+  let members = [];
   let invitedByBanner = '';
-  if (invitedByUserId) {
-    const allUsers   = getRegisteredUsers();
-    const referrer   = allUsers.find(u => u.userId === invitedByUserId);
-    const refName    = referrer ? referrer.username : 'Unknown';
-    invitedByBanner  = `
-      <div class="invited-by-banner">
-        <span>🤝</span>
-        <span>Aapko <b>@${refName}</b> ne invite kiya tha</span>
-      </div>`;
+
+  if (backendData) {
+    /* Backend se aaya data */
+    members = backendData.teamMembers || [];
+    if (backendData.invitedByUsername) {
+      invitedByBanner = `
+        <div class="invited-by-banner">
+          <span>🤝</span>
+          <span>Aapko <b>@${backendData.invitedByUsername}</b> ne invite kiya tha</span>
+        </div>`;
+    }
+  } else {
+    /* localStorage fallback */
+    const localStats = getTeamStats(user.userId);
+    members = localStats.members || [];
+    const invitedByUserId = getInvitedBy(user.userId);
+    if (invitedByUserId) {
+      const allUsers = getRegisteredUsers();
+      const referrer = allUsers.find(u => u.userId === invitedByUserId);
+      const refName  = referrer ? referrer.username : 'Unknown';
+      invitedByBanner = `
+        <div class="invited-by-banner">
+          <span>🤝</span>
+          <span>Aapko <b>@${refName}</b> ne invite kiya tha</span>
+        </div>`;
+    }
   }
 
+  const stats = {
+    total:    members.length,
+    active:   members.filter(m => m.active !== false).length,
+    inactive: members.filter(m => m.active === false).length,
+    members
+  };
+
   /* Team members HTML */
-  const membersHtml = stats.members.length === 0
+  const membersHtml = members.length === 0
     ? `<div class="team-empty">
         <span class="team-empty-icon">🌱</span>
         <div class="team-empty-text">
@@ -52,7 +75,7 @@ function renderInvitePage(user) {
           Niche diya gaya link share karein aur apni team banayein!
         </div>
        </div>`
-    : stats.members.map((m, i) => {
+    : members.map((m, i) => {
         const color    = avatarColor(m.username || '');
         const initials = getInitials(m.name);
         const dateStr  = formatDate(m.joinedAt);
@@ -163,8 +186,16 @@ function copyReferralLink() {
 }
 
 /* ── Init ── */
-(function init() {
+(async function init() {
   const user = renderShell('invite');
   if (!user) return;
-  renderInvitePage(user);
+
+  /* Pehle localStorage se render karo (fast) */
+  renderInvitePage(user, null);
+
+  /* Phir backend se fresh data lo */
+  try {
+    const data = await apiGetTeamData();
+    if (data) renderInvitePage(user, data);
+  } catch(e) {}
 })();
