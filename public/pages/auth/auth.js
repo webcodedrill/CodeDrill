@@ -715,7 +715,7 @@ async function doLogin() {
   }
 }
 
-function doRegister() {
+async function doRegister() {
   /* ── 1. Full Name ── */
   const nameEl = document.getElementById('r-name');
   const name = nameEl?.value?.trim();
