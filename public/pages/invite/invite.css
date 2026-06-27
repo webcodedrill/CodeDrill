@@ -1,0 +1,312 @@
+/* ── Invite Friends Page CSS ── */
+.invite-page {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 32px 20px 60px;
+}
+
+.invite-hero {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.invite-hero-icon {
+  font-size: 52px;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.invite-hero h1 {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--text);
+  margin: 0 0 8px;
+}
+
+.invite-hero p {
+  color: var(--muted);
+  font-size: 15px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ── Stats Row ── */
+.invite-stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.invite-stat-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 12px;
+  text-align: center;
+}
+
+.invite-stat-num {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--green);
+  display: block;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.invite-stat-num.amber { color: var(--amber); }
+.invite-stat-num.red   { color: #F27B72; }
+
+.invite-stat-label {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+/* ── Referral Link Card ── */
+.invite-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.invite-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.invite-link-box {
+  background: var(--panel2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.invite-link-text {
+  flex: 1;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  color: var(--green);
+  word-break: break-all;
+  line-height: 1.5;
+  min-width: 0;
+}
+
+.invite-copy-btn {
+  background: var(--green);
+  color: #0F1115;
+  border: none;
+  border-radius: 9px;
+  padding: 9px 18px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.2s, transform 0.1s;
+  flex-shrink: 0;
+}
+
+.invite-copy-btn:hover { opacity: 0.88; }
+.invite-copy-btn:active { transform: scale(0.97); }
+.invite-copy-btn.copied {
+  background: #1CC88A;
+}
+
+.invite-code-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--panel2);
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  padding: 6px 14px 6px 10px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.invite-code-chip span {
+  color: var(--green);
+  font-weight: 700;
+  font-size: 15px;
+}
+
+/* ── Team Members List ── */
+.team-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.team-section-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.team-count-badge {
+  background: var(--green);
+  color: #0F1115;
+  font-weight: 800;
+  font-size: 12px;
+  border-radius: 20px;
+  padding: 2px 10px;
+}
+
+.team-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--muted);
+}
+
+.team-empty-icon { font-size: 40px; display: block; margin-bottom: 10px; }
+.team-empty-text { font-size: 14px; line-height: 1.5; }
+
+.team-member-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--panel2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  transition: border-color 0.15s;
+}
+
+.team-member-row:hover {
+  border-color: var(--green);
+}
+
+.team-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 800;
+  color: #0F1115;
+  flex-shrink: 0;
+}
+
+.team-member-info { flex: 1; min-width: 0; }
+
+.team-member-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.team-member-username {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.team-member-meta {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.team-joined-date {
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.status-badge {
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 20px;
+  padding: 2px 10px;
+  display: inline-block;
+}
+
+.status-badge.active {
+  background: #7CE38B22;
+  color: var(--green);
+  border: 1px solid #7CE38B44;
+}
+
+.status-badge.inactive {
+  background: #F27B7222;
+  color: #F27B72;
+  border: 1px solid #F27B7244;
+}
+
+.member-num {
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 600;
+  margin-right: 4px;
+  flex-shrink: 0;
+  min-width: 22px;
+}
+
+/* ── Invited by banner ── */
+.invited-by-banner {
+  background: var(--panel2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--green);
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.invited-by-banner b { color: var(--green); }
+
+/* ── Toast ── */
+.invite-toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: var(--green);
+  color: #0F1115;
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 30px;
+  padding: 10px 24px;
+  z-index: 9999;
+  box-shadow: 0 6px 24px #0007;
+  transition: transform 0.3s ease;
+  pointer-events: none;
+}
+
+.invite-toast.show {
+  transform: translateX(-50%) translateY(0);
+}
+
+@media (max-width: 500px) {
+  .invite-stats-row { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .invite-stat-card { padding: 14px 8px; }
+  .invite-stat-num { font-size: 26px; }
+  .invite-link-box { flex-direction: column; align-items: stretch; }
+  .invite-copy-btn { width: 100%; text-align: center; }
+}
