@@ -1,0 +1,17 @@
+:root {
+  --bg: #0F1115;
+  --panel: #171A21;
+  --panel2: #1E2230;
+  --green: #7CE38B;
+  --amber: #F2B544;
+  --text: #E7E9EE;
+  --muted: #8B92A5;
+  --border: #2A2F3E;
+}
+
+/* Extended vars for MCQ */
+:root {
+  --accent: #7CE38B;
+  --card:   #171A21;
+  --hover:  #1E2230;
+}
